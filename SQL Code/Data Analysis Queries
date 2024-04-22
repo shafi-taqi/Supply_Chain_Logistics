@@ -1,0 +1,211 @@
+-- ####  1/ WHICH CUSTOMER SEGMENT HAD AN AVERAGE AMOUNT OF ORDERS OVER $150?
+
+-- Finding out how many categories of customer segments there are.
+
+SELECT DISTINCT Customer_Segment
+FROM `supply_chain_data.retail_supply`
+
+-- Now the actual objective;
+
+
+SELECT DISTINCT customer_segment, 
+AVG(order_item_total) AS avg_order_amount
+  FROM `supply_chain_data.retail_supply`
+  GROUP BY Customer_Segment
+
+
+  -- The result of the query above shows that all three customer segment types had an average order amount over $150 
+
+--#### 2/ WHICH DEPARTMENT OF PRODUCTS HAD THE MOST CANCELATIONS?
+
+--finding the number of canceled orders for each department
+
+
+(SELECT DISTINCT Department_Name,
+COUNT(Order_Status) AS number_of_canceled_orders
+FROM `supply_chain_data.retail_supply`
+WHERE(Order_Status ='CANCELED')
+GROUP BY Department_Name, Order_Status 
+) 
+
+-- now, sorting the results from the previous query
+
+
+SELECT Department_Name, number_of_canceled_orders
+FROM (SELECT DISTINCT Department_Name,
+COUNT(Order_Status) AS number_of_canceled_orders
+FROM `supply_chain_data.retail_supply`
+WHERE(Order_Status ='CANCELED')
+GROUP BY Department_Name, Order_Status 
+) 
+GROUP BY Department_Name, number_of_canceled_orders
+ORDER BY (number_of_canceled_orders) DESC
+
+-- Hence, we can see that the Fan Shop had the most number of canceled orders
+
+
+-- #### 3/ WHAT IS THE AVERAGE PROFIT PER ORDER WITHIN EACH REGION ?
+
+SELECT DISTINCT Order_Region,  
+AVG(Order_Profit_Per_Order) AS Average_Profit_Per_Order
+FROM `supply_chain_data.retail_supply`
+GROUP BY Order_Region 
+
+
+
+-- #### 4/ WHAT IS THE AVERAGE PROFIT PER ORDER WITHIN SOUTH ASIA ?
+
+
+SELECT DISTINCT Order_Region,  
+AVG(Order_Profit_Per_Order) AS Average_Profit_Per_Order
+FROM `supply_chain_data.retail_supply`
+WHERE Order_Region = 'South Asia'
+GROUP BY Order_Region 
+
+
+-- #### 5/ WHAT IS THE AVERAGE TIME FOR SHIPMENT WITHIN EACH REGION? 
+
+SELECT DISTINCT Order_Region, 
+AVG(Days_for_shipping__real_) AS Average_Days_For_Shipment
+FROM `supply_chain_data.retail_supply`
+GROUP BY Order_Region
+
+
+-- #### 6/ What is the average discount rate for orders worth over $200?
+
+SELECT AVG (Order_Item_Discount_Rate) AS Avg_Disc_Price200
+FROM `supply_chain_data.retail_supply`
+WHERE Order_Item_Total >= 200
+
+
+-- #### 7/ Create a table specifying product names and respective number of sales according to each region.
+
+
+
+-- Finding out how many main regions the products were sold at.
+
+SELECT DISTINCT Order_Region 
+FROM `supply_chain_data.retail_supply`
+ORDER BY Order_Region ASC
+
+-- Creating new table and inserting relevant data
+
+CREATE TABLE `supply_chain_data`. number_of_sales_table
+(Order_Region STRING,
+Product_Name STRING,
+Number_of_Sales INT ); 
+
+
+INSERT INTO `supply_chain_data.number_of_sales_table`
+(SELECT DISTINCT Order_Region,Product_Name,
+COUNT(*) AS Number_of_Sales
+FROM `supply_chain_data.retail_supply`
+
+
+GROUP BY Order_Region, Product_Name
+ORDER BY Order_Region, Number_of_Sales DESC)
+
+
+
+-- #### 8/ What are the top products sold within South Asia, East of USA, Canada and West Asia?
+
+-- Top product sold within South Asia
+
+Select * 
+FROM `supply_chain_data.number_of_sales_table`
+WHERE Order_Region = 'South Asia'
+ORDER BY Number_of_Sales DESC
+LIMIT 1
+
+-- Top product sold within the East of USA
+
+
+Select * 
+FROM `supply_chain_data.number_of_sales_table`
+WHERE Order_Region= 'East of USA'
+ORDER BY Number_of_Sales DESC
+LIMIT 1
+
+
+-- Top product sold within Canada
+
+Select * 
+FROM `supply_chain_data.number_of_sales_table`
+WHERE Order_Region= 'Canada'
+ORDER BY Number_of_Sales DESC
+LIMIT 1
+
+-- Top product sold within West Asia
+
+Select * 
+FROM `supply_chain_data.number_of_sales_table`
+WHERE Order_Region= 'West Asia'
+ORDER BY Number_of_Sales DESC
+LIMIT 1
+
+
+-- The above queries confirms that the top product sold in all of South Asia, West Asia, Canada and the East of USA is the "Perfect Fitness Perfect Rip Deck"
+
+
+-- #### 9/ Create a table listing the products, department name and units sold
+
+SELECT Product_Name, Department_Name, 
+Count (*) as number_of_products_sold
+FROM `supply_chain_data.retail_supply`
+GROUP BY Product_Name, Department_Name
+ORDER BY Department_Name ASC
+
+
+
+-- #### 10/  Which was the most sold Fitness product?
+
+
+
+SELECT Product_Name, Department_Name, 
+Count (*) as number_of_products_sold
+FROM `supply_chain_data.retail_supply`
+WHERE Department_Name = 'Fitness'
+GROUP BY Product_Name, Department_Name
+ORDER BY number_of_products_sold DESC
+LIMIT 1
+
+
+
+-- #### 11/ Which item sold had the most average discount? 
+
+
+SELECT DISTINCT Product_Name, Department_Name, 
+AVG(Order_Item_Discount_Rate) as Average_Discount,
+
+FROM `supply_chain_data.retail_supply`
+GROUP BY Product_Name, Department_Name
+ORDER BY Average_Discount DESC
+
+-- From the query above we found out that the product sold with highest average discount is 'Bowflex SelectTech 1090 Dumbells'
+
+
+
+--#### 12 What was the price of 'Bowflex SelectTech 1090 Dumbells'?
+
+SELECT DISTINCT Product_Name, Order_Item_Product_Price,
+Department_Name
+FROM `supply_chain_data.retail_supply`
+WHERE Product_Name = 'Bowflex SelectTech 1090 Dumbbells'
+GROUP BY Product_Name, Order_Item_Product_Price, Department_Name
+
+-- The price of Bowflex SelectTech 1090 Dumbells is $599.99
+
+
+-- Which city in the East of USA had the most sales? 
+
+SELECT DISTINCT Order_Region, Order_City, 
+COUNT(*) AS number_of_orders_per_city
+
+FROM `supply_chain_data.retail_supply`
+WHERE Order_Region IN ('East of USA')
+
+GROUP BY  Order_City, Order_Region
+ORDER BY number_of_orders_per_city DESC
+
+--New York had the most sales among all the cities in the East of USA
+
