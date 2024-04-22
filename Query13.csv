@@ -1,0 +1,107 @@
+Order_Region,Order_City,number_of_orders_per_city
+East of USA,New York City,2202
+East of USA,Philadelphia,1302
+East of USA,Columbus,285
+East of USA,Newark,244
+East of USA,Baltimore,101
+East of USA,Cleveland,99
+East of USA,Fairfield,99
+East of USA,Lawrence,88
+East of USA,Lancaster,86
+East of USA,Lakewood,86
+East of USA,Long Beach,84
+East of USA,Springfield,80
+East of USA,Toledo,78
+East of USA,Rochester,77
+East of USA,Providence,74
+East of USA,Troy,66
+East of USA,Clinton,65
+East of USA,Wilmington,65
+East of USA,Columbia,63
+East of USA,Oceanside,63
+East of USA,Paterson,58
+East of USA,Akron,57
+East of USA,Dover,54
+East of USA,Auburn,50
+East of USA,Everett,46
+East of USA,Cincinnati,46
+East of USA,Plainfield,45
+East of USA,Yonkers,44
+East of USA,Cranston,43
+East of USA,Franklin,39
+East of USA,Washington,39
+East of USA,Chester,39
+East of USA,Lowell,38
+East of USA,Dublín,37
+East of USA,Lorain,35
+East of USA,Concord,32
+East of USA,Belleville,31
+East of USA,Quincy,30
+East of USA,Marion,29
+East of USA,Buffalo,26
+East of USA,Watertown,25
+East of USA,Perth Amboy,24
+East of USA,Middletown,24
+East of USA,Waterbury,24
+East of USA,Manchester,24
+East of USA,New Rochelle,24
+East of USA,Medina,23
+East of USA,Utica,23
+East of USA,Parma,23
+East of USA,Burlington,22
+East of USA,Hempstead,22
+East of USA,Mount Vernon,22
+East of USA,Bristol,20
+East of USA,New Bedford,20
+East of USA,Morristown,20
+East of USA,Revere,18
+East of USA,Rome,18
+East of USA,Vineland,18
+East of USA,Freeport,17
+East of USA,Leominster,17
+East of USA,Westfield,16
+East of USA,Cambridge,14
+East of USA,Orange,13
+East of USA,Andover,13
+East of USA,Meriden,13
+East of USA,Mentor,13
+East of USA,East Orange,13
+East of USA,Reading,13
+East of USA,Hackensack,12
+East of USA,Bethlehem,12
+East of USA,Allentown,12
+East of USA,Bowling Green,12
+East of USA,Rockville,12
+East of USA,Wheeling,12
+East of USA,Norwich,11
+East of USA,Niagara Falls,10
+East of USA,Woonsocket,10
+East of USA,Lewiston,10
+East of USA,Passaic,10
+East of USA,Milford,9
+East of USA,Warwick,8
+East of USA,Grove City,8
+East of USA,Cuyahoga Falls,8
+East of USA,Gaithersburg,8
+East of USA,Mason,8
+East of USA,Kent,7
+East of USA,Shelton,7
+East of USA,Bayonne,6
+East of USA,Bangor,6
+East of USA,Marlborough,6
+East of USA,Laurel,6
+East of USA,York,5
+East of USA,Hamilton,4
+East of USA,Altoona,4
+East of USA,Clifton,4
+East of USA,Elyria,3
+East of USA,Jamestown,3
+East of USA,Malden,3
+East of USA,New Brunswick,3
+East of USA,Holyoke,3
+East of USA,Bridgeton,3
+East of USA,Nashua,2
+East of USA,Beverly,2
+East of USA,Linden,2
+East of USA,Lindenhurst,2
+East of USA,Atlantic City,1
